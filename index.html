@@ -1,535 +1,831 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roam App - On-Demand Tow Truck Service</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#A17E3E',
-                        secondary: '#488686',
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Roam - The most advanced on-demand tow truck service. Connect with drivers instantly, negotiate prices, and track in real-time.">
+  <meta name="keywords" content="tow truck, roadside assistance, vehicle towing, emergency towing, tow truck app">
+  <meta property="og:title" content="Roam App - On-Demand Tow Truck Service">
+  <meta property="og:description"
+    content="Connect with tow truck drivers instantly. Negotiate prices, track in real-time, and get back on the road faster.">
+  <meta property="og:image" content="assets/app.png">
+  <title>Roam App - On-Demand Tow Truck Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#A17E3E',
+            secondary: '#488686',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
         }
-    </script>
-    <style>
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+    @keyframes float {
 
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease forwards;
-        }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
 
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
 
-        .animate-slideInLeft {
-            animation: slideInLeft 0.8s ease forwards;
-        }
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
 
-        .delay-200 {
-            animation-delay: 0.2s;
-        }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-        .delay-400 {
-            animation-delay: 0.4s;
-        }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease forwards;
+    }
 
-        .glass-effect {
-            background: rgba(161, 126, 62, 0.1);
-            backdrop-filter: blur(10px);
-        }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #A17E3E 0%, #488686 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-    </style>
+    .animate-slideInLeft {
+      animation: slideInLeft 0.8s ease forwards;
+    }
+
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-400 {
+      animation-delay: 0.4s;
+    }
+
+    .glass-effect {
+      background: rgba(161, 126, 62, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #A17E3E 0%, #488686 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
 </head>
+
 <body class="bg-gradient-to-br from-[#A17E3E] via-[#8B6E35] to-[#488686] text-white">
-    
-    <!-- Header -->
-    <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4">
-            <nav class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <div class="text-4xl">🚛</div>
-                    <div class="text-3xl font-bold tracking-tight">Roam</div>
-                </div>
-                <ul class="hidden md:flex space-x-8">
-                    <li><a href="#features" class="hover:opacity-70 transition font-medium">Features</a></li>
-                    <li><a href="#how-it-works" class="hover:opacity-70 transition font-medium">How It Works</a></li>
-                    <li><a href="#pricing" class="hover:opacity-70 transition font-medium">Pricing</a></li>
-                    <li><a href="#download" class="hover:opacity-70 transition font-medium">Download</a></li>
-                </ul>
-                <button class="md:hidden text-3xl">☰</button>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6">
-        <div class="container mx-auto max-w-6xl">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-left opacity-0 animate-fadeInUp">
-                    <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
-                        Towing Made <span class="gradient-text">Simple</span>
-                    </h1>
-                    <p class="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
-                        Connect with tow truck drivers instantly. Negotiate prices, track in real-time, and get back on the road faster.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                        <a href="#download" class="bg-white text-[#A17E3E] px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:scale-105 hover:shadow-xl transition transform text-center">
-                            Get Started Free
-                        </a>
-                        <a href="#how-it-works" class="bg-white/20 border-2 border-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white/30 transition text-center">
-                            Learn More
-                        </a>
-                    </div>
-                    <div class="flex items-center gap-6 text-sm">
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl">⭐</span>
-                            <div>
-                                <div class="font-bold">4.8/5</div>
-                                <div class="text-white/70">User Rating</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl">🚚</span>
-                            <div>
-                                <div class="font-bold">10K+</div>
-                                <div class="text-white/70">Active Drivers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center opacity-0 animate-fadeInUp delay-200">
-                    <div class="relative animate-float">
-                        <div class="w-72 h-[580px] bg-black rounded-[3rem] p-3 shadow-2xl">
-                            <div class="w-full h-full bg-gradient-to-br from-[#A17E3E] to-[#488686] rounded-[2.5rem] p-6 relative overflow-hidden">
-                                <div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full"></div>
-                                <div class="mt-8 space-y-4">
-                                    <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-4">
-                                        <div class="flex items-center gap-3 mb-2">
-                                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-2xl">🚛</div>
-                                            <div>
-                                                <div class="font-bold text-sm">John's Towing</div>
-                                                <div class="text-xs text-white/80">2.5 km away</div>
-                                            </div>
-                                        </div>
-                                        <div class="text-2xl font-bold">$45</div>
-                                    </div>
-                                    <div class="bg-white rounded-2xl p-4 text-gray-800">
-                                        <div class="text-xs text-gray-500 mb-1">Your Location</div>
-                                        <div class="text-sm font-semibold mb-3">📍 123 Main Street</div>
-                                        <div class="h-32 bg-amber-100 rounded-xl flex items-center justify-center text-4xl">
-                                            🗺️
-                                        </div>
-                                    </div>
-                                    <button class="w-full bg-white text-[#A17E3E] py-4 rounded-2xl font-bold text-lg shadow-lg">
-                                        Request Tow
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <!-- Header -->
+  <header id="header" class="fixed w-full top-0 z-50 transition-all duration-300">
+    <div class="container mx-auto px-6 py-4">
+      <nav class="flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+            <div class="text-3xl transform hover:scale-110 transition-transform">
+              <img src="assets/logo.svg" />
             </div>
+          </div>
+          <div class="text-3xl font-black tracking-tight hover:opacity-80 transition-opacity cursor-pointer">Roam App
+          </div>
         </div>
-    </section>
+        <ul class="hidden md:flex space-x-8">
+          <li><a href="#features" class="hover:text-white transition font-medium text-white/80">Features</a></li>
+          <li><a href="#how-it-works" class="hover:text-white transition font-medium text-white/80">How It Works</a>
+          </li>
+          <li><a href="#pricing" class="hover:text-white transition font-medium text-white/80">Pricing</a></li>
+          <li><a href="#contact" class="hover:text-white transition font-medium text-white/80">Contact</a></li>
+          <li><a href="#download"
+              class="bg-white text-primary px-6 py-2 rounded-lg font-semibold hover:bg-white/90 transition shadow-lg">Download</a>
+          </li>
+        </ul>
+        <button id="mobileMenuBtn"
+          class="md:hidden w-12 h-12 flex items-center justify-center bg-white/10 rounded-xl hover:bg-white/20 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </nav>
+      <!-- Mobile Menu -->
+      <div id="mobileMenu"
+        class="hidden md:hidden absolute top-full left-0 w-full bg-gradient-to-br from-primary to-secondary backdrop-blur-lg">
+        <ul class="py-4 px-6 space-y-4">
+          <li><a href="#features" class="block py-2 hover:translate-x-2 transition-transform font-medium">Features</a>
+          </li>
+          <li><a href="#how-it-works" class="block py-2 hover:translate-x-2 transition-transform font-medium">How It
+              Works</a></li>
+          <li><a href="#pricing" class="block py-2 hover:translate-x-2 transition-transform font-medium">Pricing</a>
+          </li>
+          <li><a href="#contact" class="block py-2 hover:translate-x-2 transition-transform font-medium">Contact</a>
+          </li>
+          <li><a href="#download"
+              class="inline-block bg-white text-primary px-6 py-2 rounded-lg font-semibold hover:bg-white/90 transition shadow-lg">Download</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-white text-gray-800">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="text-4xl md:text-5xl font-black text-center mb-4">
-                Why Choose <span class="text-[#A17E3E]">Roam?</span>
-            </h2>
-            <p class="text-center text-gray-600 text-lg mb-16 max-w-2xl mx-auto">
-                The most comprehensive tow truck platform for both users and drivers
-            </p>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
-                    <div class="text-5xl mb-4">💰</div>
-                    <h3 class="text-2xl font-bold mb-3 text-[#A17E3E]">Negotiate Prices</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Chat directly with drivers and agree on a fair price before service. No hidden fees or surprises.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
-                    <div class="text-5xl mb-4">🗺️</div>
-                    <h3 class="text-2xl font-bold mb-3 text-[#488686]">Real-Time Navigation</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Track your tow truck's location in real-time. Know exactly when help will arrive with live updates.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
-                    <div class="text-5xl mb-4">🎟️</div>
-                    <h3 class="text-2xl font-bold mb-3 text-[#A17E3E]">Promo Codes</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Save money with exclusive promo codes and special offers for both first-time and loyal users.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
-                    <div class="text-5xl mb-4">👥</div>
-                    <h3 class="text-2xl font-bold mb-3 text-[#488686]">Driver Network</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Drivers can hire other tow trucks when they need backup. Collaborate and grow your business.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
-                    <div class="text-5xl mb-4">⚡</div>
-                    <h3 class="text-2xl font-bold mb-3 text-[#488686]">Instant Matching</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Get matched with nearby available drivers instantly. No waiting, no delays, just fast service.
-                    </p>
-                </div>
-
-                <div class="bg-gradient-to-br from-stone-50 to-stone-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
-                    <div class="text-5xl mb-4">⭐</div>
-                    <h3 class="text-2xl font-bold mb-3 text-[#A17E3E]">Ratings & Reviews</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Rate your experience and read reviews from other users. Trust and transparency guaranteed.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section id="how-it-works" class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
-                How <span class="text-[#A17E3E]">Roam</span> Works
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-16">
-                <!-- For Users -->
+  <!-- Hero Section -->
+  <section class="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary opacity-10"></div>
+    <div class="container mx-auto max-w-6xl relative">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="text-left">
+          <div
+            class="inline-block bg-white/10 backdrop-blur-lg px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fadeInUp opacity-0"
+            style="animation-delay: 0.2s">
+            🎉 Trusted by 100,000+ Users Nationwide
+          </div>
+          <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 opacity-0 animate-fadeInUp"
+            style="animation-delay: 0.4s">
+            Towing Made Simple & Reliable
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed opacity-0 animate-fadeInUp"
+            style="animation-delay: 0.6s">
+            Connect with verified tow truck drivers instantly. Get transparent pricing, real-time tracking, and peace of
+            mind.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 mb-8 opacity-0 animate-fadeInUp" style="animation-delay: 0.8s">
+            <a href="#download"
+              class="group bg-white text-primary px-8 py-4 rounded-xl text-lg font-bold shadow-2xl hover:scale-105 hover:shadow-xl transition transform text-center relative overflow-hidden">
+              <span class="relative z-10">Get Started Free</span>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-10 transition-opacity">
+              </div>
+            </a>
+            <a href="#how-it-works"
+              class="group bg-white/10 backdrop-blur-lg border-2 border-white/20 px-8 py-4 rounded-xl text-lg font-bold hover:bg-white/20 transition text-center">
+              Watch Demo
+              <span class="ml-2 group-hover:translate-x-1 inline-block transition-transform">→</span>
+            </a>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 opacity-0 animate-fadeInUp" style="animation-delay: 1s">
+            <div class="bg-white/10 backdrop-blur-lg p-4 rounded-xl">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">⭐</span>
                 <div>
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="text-4xl">👤</div>
-                        <h3 class="text-3xl font-bold">For Users</h3>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-[#A17E3E] rounded-full flex items-center justify-center font-bold text-xl">1</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Request a Tow</h4>
-                                <p class="text-gray-300">Enter your location and destination. Get instant quotes from nearby drivers.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-[#A17E3E] rounded-full flex items-center justify-center font-bold text-xl">2</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Negotiate & Choose</h4>
-                                <p class="text-gray-300">Chat with drivers, negotiate prices, and select the best option for you.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-[#A17E3E] rounded-full flex items-center justify-center font-bold text-xl">3</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Track & Relax</h4>
-                                <p class="text-gray-300">Track your driver in real-time and get updates every step of the way.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-[#A17E3E] rounded-full flex items-center justify-center font-bold text-xl">4</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Pay & Rate</h4>
-                                <p class="text-gray-300">Secure payment through the app. Rate your experience and help others.</p>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="font-bold text-xl">4.8/5</div>
+                  <div class="text-white/70 text-sm">User Rating</div>
                 </div>
-
-                <!-- For Drivers -->
-                <div>
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="text-4xl">🚛</div>
-                        <h3 class="text-3xl font-bold">For Drivers</h3>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-[#488686] rounded-full flex items-center justify-center font-bold text-xl">1</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Go Online</h4>
-                                <p class="text-gray-300">Turn on availability and start receiving tow requests in your area.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-[#488686] rounded-full flex items-center justify-center font-bold text-xl">2</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Accept & Negotiate</h4>
-                                <p class="text-gray-300">Review requests, negotiate fair prices, and accept jobs that work for you.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-[#488686] rounded-full flex items-center justify-center font-bold text-xl">3</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Navigate & Tow</h4>
-                                <p class="text-gray-300">Use built-in navigation to reach customers quickly and efficiently.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 bg-[#488686] rounded-full flex items-center justify-center font-bold text-xl">4</div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Earn & Grow</h4>
-                                <p class="text-gray-300">Get paid instantly. Hire backup drivers when needed and expand your fleet.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+            <div class="bg-white/10 backdrop-blur-lg p-4 rounded-xl">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">🚚</span>
+                <div>
+                  <div class="font-bold text-xl">10K+</div>
+                  <div class="text-white/70 text-sm">Active Drivers</div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-lg p-4 rounded-xl">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">⚡</span>
+                <div>
+                  <div class="font-bold text-xl">5 min</div>
+                  <div class="text-white/70 text-sm">Avg Response</div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-lg p-4 rounded-xl">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">🎯</span>
+                <div>
+                  <div class="font-bold text-xl">99%</div>
+                  <div class="text-white/70 text-sm">Success Rate</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="pricing" class="py-20 bg-white text-gray-800">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="text-4xl md:text-5xl font-black text-center mb-4">
-                Simple, <span class="text-[#A17E3E]">Transparent</span> Pricing
-            </h2>
-            <p class="text-center text-gray-600 text-lg mb-16">
-                No subscription fees. No hidden charges. Pay only for what you use.
-            </p>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="border-2 border-gray-200 rounded-3xl p-8 hover:border-[#A17E3E] hover:shadow-2xl transition">
-                    <div class="text-center mb-6">
-                        <div class="text-4xl mb-3">👤</div>
-                        <h3 class="text-2xl font-bold mb-2">Users</h3>
-                        <div class="text-4xl font-black text-[#A17E3E] mb-2">FREE</div>
-                        <p class="text-gray-600">Download & use</p>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#488686] text-xl">✓</span>
-                            <span>Unlimited tow requests</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#488686] text-xl">✓</span>
-                            <span>Real-time tracking</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#488686] text-xl">✓</span>
-                            <span>Price negotiation</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#488686] text-xl">✓</span>
-                            <span>Promo codes</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-gradient-to-br from-[#A17E3E] to-[#488686] text-white rounded-3xl p-8 transform scale-105 shadow-2xl">
-                    <div class="text-center mb-6">
-                        <div class="bg-white text-[#A17E3E] text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">POPULAR</div>
-                        <div class="text-4xl mb-3">🚛</div>
-                        <h3 class="text-2xl font-bold mb-2">Basic Driver</h3>
-                        <div class="text-4xl font-black mb-2">12%</div>
-                        <p>Commission per job</p>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-2">
-                            <span class="text-xl">✓</span>
-                            <span>Unlimited job requests</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-xl">✓</span>
-                            <span>Instant payments</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-xl">✓</span>
-                            <span>Navigation tools</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-xl">✓</span>
-                            <span>Customer support</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="border-2 border-gray-200 rounded-3xl p-8 hover:border-[#488686] hover:shadow-2xl transition">
-                    <div class="text-center mb-6">
-                        <div class="text-4xl mb-3">🏆</div>
-                        <h3 class="text-2xl font-bold mb-2">Pro Driver</h3>
-                        <div class="text-4xl font-black text-[#488686] mb-2">8%</div>
-                        <p class="text-gray-600">Commission per job</p>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#488686] text-xl">✓</span>
-                            <span>Everything in Basic</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#488686] text-xl">✓</span>
-                            <span>Priority support</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#488686] text-xl">✓</span>
-                            <span>Hire other drivers</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#488686] text-xl">✓</span>
-                            <span>Analytics dashboard</span>
-                        </li>
-                    </ul>
-                </div>
+        <div class="flex justify-center relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-20 blur-3xl rounded-full">
+          </div>
+          <div class="relative animate-float opacity-0 animate-fadeInUp" style="animation-delay: 0.6s">
+            <div class="w-72 h-[580px] bg-black rounded-[3rem] p-3 shadow-2xl relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-10 rounded-[3rem]"></div>
+              <div
+                class="w-full h-full bg-gradient-to-br from-[#A17E3E] to-[#488686] rounded-[2.5rem] relative overflow-hidden backdrop-blur-xl">
+                <img src="assets/app.png" alt="Roam App Interface"
+                  class="w-full h-full object-cover rounded-2xl shadow-lg">
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#A17E3E] to-transparent opacity-20"></div>
+  </section>
 
-    <!-- Download Section -->
-    <section id="download" class="py-20 bg-gradient-to-br from-[#A17E3E] to-[#488686]">
-        <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h2 class="text-4xl md:text-5xl font-black mb-6">
-                Ready to Get Started?
-            </h2>
-            <p class="text-xl md:text-2xl mb-12 text-white/90">
-                Download Roam today and experience the future of towing services
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-                <a href="#" class="bg-black text-white px-8 py-4 rounded-2xl flex items-center gap-4 hover:scale-105 transition transform shadow-2xl">
-                    <span class="text-4xl">🍎</span>
-                    <div class="text-left">
-                        <div class="text-xs">Download on the</div>
-                        <div class="text-xl font-bold">App Store</div>
-                    </div>
-                </a>
-                <a href="#" class="bg-black text-white px-8 py-4 rounded-2xl flex items-center gap-4 hover:scale-105 transition transform shadow-2xl">
-                    <span class="text-4xl">🤖</span>
-                    <div class="text-left">
-                        <div class="text-xs">Get it on</div>
-                        <div class="text-xl font-bold">Google Play</div>
-                    </div>
-                </a>
-            </div>
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-white text-gray-800">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <h2 class="text-4xl md:text-5xl font-black text-center mb-4">
+        Why Choose <span class="text-[#A17E3E]">Roam App?</span>
+      </h2>
+      <p class="text-center text-gray-600 text-lg mb-16 max-w-2xl mx-auto">
+        The most comprehensive tow truck platform for both users and drivers
+      </p>
 
-            <div class="flex flex-wrap justify-center gap-8 text-sm">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">🔒</span>
-                    <span>Secure & Safe</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">⚡</span>
-                    <span>Fast Setup</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">💯</span>
-                    <span>100% Free</span>
-                </div>
-            </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div
+          class="bg-gradient-to-br from-amber-50 to-amber-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
+          <div class="text-5xl mb-4">💰</div>
+          <h3 class="text-2xl font-bold mb-3 text-[#A17E3E]">Negotiate Prices</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Chat directly with drivers and agree on a fair price before service. No hidden fees or surprises.
+          </p>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="text-3xl">🚛</span>
-                        <span class="text-2xl font-bold">Roam</span>
-                    </div>
-                    <p class="text-gray-400">Making towing simple, fast, and affordable for everyone.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Product</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#features" class="hover:text-[#A17E3E] transition">Features</a></li>
-                        <li><a href="#pricing" class="hover:text-[#A17E3E] transition">Pricing</a></li>
-                        <li><a href="#" class="hover:text-[#A17E3E] transition">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Company</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-[#A17E3E] transition">About Us</a></li>
-                        <li><a href="#" class="hover:text-[#A17E3E] transition">Careers</a></li>
-                        <li><a href="#" class="hover:text-[#A17E3E] transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Legal</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-[#A17E3E] transition">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-[#A17E3E] transition">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-[#A17E3E] transition">Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Roam App. All rights reserved.</p>
-                <p class="mt-2">support@roamapp.com | +1 (555) 123-4567</p>
-            </div>
+        <div
+          class="bg-gradient-to-br from-teal-50 to-teal-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
+          <div class="text-5xl mb-4">🗺️</div>
+          <h3 class="text-2xl font-bold mb-3 text-[#488686]">Real-Time Navigation</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Track your tow truck's location in real-time. Know exactly when help will arrive with live updates.
+          </p>
         </div>
-    </footer>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('glass-effect', 'shadow-lg');
-            } else {
-                header.classList.remove('glass-effect', 'shadow-lg');
-            }
+        <div
+          class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
+          <div class="text-5xl mb-4">🎟️</div>
+          <h3 class="text-2xl font-bold mb-3 text-[#A17E3E]">Promo Codes</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Save money with exclusive promo codes and special offers for both first-time and loyal users.
+          </p>
+        </div>
+
+        <div
+          class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
+          <div class="text-5xl mb-4">👥</div>
+          <h3 class="text-2xl font-bold mb-3 text-[#488686]">Driver Network</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Drivers can hire other tow trucks when they need backup. Collaborate and grow your business.
+          </p>
+        </div>
+
+        <div
+          class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
+          <div class="text-5xl mb-4">⚡</div>
+          <h3 class="text-2xl font-bold mb-3 text-[#488686]">Instant Matching</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Get matched with nearby available drivers instantly. No waiting, no delays, just fast service.
+          </p>
+        </div>
+
+        <div
+          class="bg-gradient-to-br from-stone-50 to-stone-100 p-8 rounded-3xl hover:scale-105 transition transform shadow-lg">
+          <div class="text-5xl mb-4">⭐</div>
+          <h3 class="text-2xl font-bold mb-3 text-[#A17E3E]">Ratings & Reviews</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Rate your experience and read reviews from other users. Trust and transparency guaranteed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+        How <span class="text-[#A17E3E]">Roam App</span> Works
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-16">
+        <!-- For Users -->
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="text-4xl">👤</div>
+            <h3 class="text-3xl font-bold">For Users</h3>
+          </div>
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-[#A17E3E] rounded-full flex items-center justify-center font-bold text-xl">
+                1</div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Request a Tow</h4>
+                <p class="text-gray-300">Enter your location and destination. Get instant quotes from nearby drivers.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-[#A17E3E] rounded-full flex items-center justify-center font-bold text-xl">
+                2</div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Negotiate & Choose</h4>
+                <p class="text-gray-300">Chat with drivers, negotiate prices, and select the best option for you.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-[#A17E3E] rounded-full flex items-center justify-center font-bold text-xl">
+                3</div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Track & Relax</h4>
+                <p class="text-gray-300">Track your driver in real-time and get updates every step of the way.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-[#A17E3E] rounded-full flex items-center justify-center font-bold text-xl">
+                4</div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Pay & Rate</h4>
+                <p class="text-gray-300">Secure payment through the app. Rate your experience and help others.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- For Drivers -->
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="text-4xl">🚛</div>
+            <h3 class="text-3xl font-bold">For Drivers</h3>
+          </div>
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-[#488686] rounded-full flex items-center justify-center font-bold text-xl">
+                1</div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Go Online</h4>
+                <p class="text-gray-300">Turn on availability and start receiving tow requests in your area.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-[#488686] rounded-full flex items-center justify-center font-bold text-xl">
+                2</div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Accept & Negotiate</h4>
+                <p class="text-gray-300">Review requests, negotiate fair prices, and accept jobs that work for you.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-[#488686] rounded-full flex items-center justify-center font-bold text-xl">
+                3</div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Navigate & Tow</h4>
+                <p class="text-gray-300">Use built-in navigation to reach customers quickly and efficiently.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div
+                class="flex-shrink-0 w-12 h-12 bg-[#488686] rounded-full flex items-center justify-center font-bold text-xl">
+                4</div>
+              <div>
+                <h4 class="font-bold text-xl mb-2">Earn & Grow</h4>
+                <p class="text-gray-300">Get paid instantly. Hire backup drivers when needed and expand your fleet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 to-white text-black">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-black mb-4">
+          Loved by <span class="text-primary">Thousands</span>
+        </h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+          Join our community of satisfied users who have experienced the future of towing services
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-2xl">
+              👨
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Michael Thompson</h4>
+              <p class="text-gray-600">Car Owner</p>
+            </div>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            "Roam App saved me when my car broke down on the highway. Within minutes, I was connected with a driver, and
+            the
+            transparent pricing gave me peace of mind."
+          </p>
+          <div class="flex items-center gap-1 text-primary">
+            ⭐⭐⭐⭐⭐
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-2xl">
+              👩
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Sarah Martinez</h4>
+              <p class="text-gray-600">Tow Truck Driver</p>
+            </div>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            "As a driver, Roam App has transformed my business. The platform is intuitive, payments are instant, and I
+            can
+            manage my fleet effortlessly."
+          </p>
+          <div class="flex items-center gap-1 text-primary">
+            ⭐⭐⭐⭐⭐
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-2xl">
+              🧑
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Alex Chen</h4>
+              <p class="text-gray-600">Business Owner</p>
+            </div>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            "Running a delivery business, vehicle reliability is crucial. Roam App's quick response times and
+            professional
+            service keep our operations smooth."
+          </p>
+          <div class="flex items-center gap-1 text-primary">
+            ⭐⭐⭐⭐⭐
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 bg-white text-gray-800">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <h2 class="text-4xl md:text-5xl font-black text-center mb-4">
+        Simple, <span class="text-[#A17E3E]">Transparent</span> Pricing
+      </h2>
+      <p class="text-center text-gray-600 text-lg mb-16">
+        No subscription fees. No hidden charges. Pay only for what you use.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="border-2 border-gray-200 rounded-3xl p-8 hover:border-[#A17E3E] hover:shadow-2xl transition">
+          <div class="text-center mb-6">
+            <div class="text-4xl mb-3">👤</div>
+            <h3 class="text-2xl font-bold mb-2">Users</h3>
+            <div class="text-4xl font-black text-[#A17E3E] mb-2">FREE</div>
+            <p class="text-gray-600">Download & use</p>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <span class="text-[#488686] text-xl">✓</span>
+              <span>Unlimited tow requests</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#488686] text-xl">✓</span>
+              <span>Real-time tracking</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#488686] text-xl">✓</span>
+              <span>Price negotiation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#488686] text-xl">✓</span>
+              <span>Promo codes</span>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="bg-gradient-to-br from-[#A17E3E] to-[#488686] text-white rounded-3xl p-8 transform scale-105 shadow-2xl">
+          <div class="text-center mb-6">
+            <!-- <div class="bg-white text-[#A17E3E] text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">POPULAR</div> -->
+            <div class="text-4xl mb-3">🚛</div>
+            <h3 class="text-2xl font-bold mb-2">Basic Driver</h3>
+            <!-- <div class="text-4xl font-black mb-2">12%</div> -->
+            <p>Commission per job</p>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <span class="text-xl">✓</span>
+              <span>Unlimited job requests</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-xl">✓</span>
+              <span>Hire other drivers</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-xl">✓</span>
+              <span>Instant payments</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-xl">✓</span>
+              <span>Navigation tools</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-xl">✓</span>
+              <span>Customer support</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download" class="py-20 bg-gradient-to-br from-[#A17E3E] to-[#488686]">
+    <div class="container mx-auto px-6 max-w-4xl text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">
+        Ready to Get Started?
+      </h2>
+      <p class="text-xl md:text-2xl mb-12 text-white/90">
+        Download Roam App today and experience the future of towing services
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+        <a href="#"
+          class="bg-black text-white px-8 py-4 rounded-2xl flex items-center gap-4 hover:scale-105 transition transform shadow-2xl">
+          <span class="text-4xl">
+            <img src="assets/apple.png" class="w-14" alt="">
+          </span>
+          <div class="text-left">
+            <div class="text-xs">Download on the</div>
+            <div class="text-xl font-bold">App Store</div>
+          </div>
+        </a>
+        <a href="#"
+          class="bg-black text-white px-8 py-4 rounded-2xl flex items-center gap-4 hover:scale-105 transition transform shadow-2xl">
+          <span class="text-4xl">
+            <img src="assets/play-store.png" class="w-10" alt="">
+          </span>
+          <div class="text-left">
+            <div class="text-xs">Get it on</div>
+            <div class="text-xl font-bold">Google Play</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-8 text-sm">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🔒</span>
+          <span>Secure & Safe</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">⚡</span>
+          <span>Fast Setup</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">💯</span>
+          <span>100% Free</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50 text-black">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-4xl font-black mb-6">
+            Let's Get in <span class="text-primary">Touch</span>
+          </h2>
+          <p class="text-gray-600 text-lg mb-8">
+            Have questions or feedback? We'd love to hear from you. Our team is here to help.
+          </p>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">📍</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Office Location</h3>
+                <p class="text-gray-600">123 Innovation Drive, Silicon Valley, CA 94025</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">📞</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Phone Number</h3>
+                <p class="text-gray-600">+1 (555) 123-4567</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-2xl">✉️</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">Email Address</h3>
+                <p class="text-gray-600">support@roamapp.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form class="bg-white rounded-2xl p-8 shadow-xl">
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                <input type="text"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                <input type="text"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
+              </div>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <input type="email"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+              <textarea rows="4"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"></textarea>
+            </div>
+            <button
+              class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 rounded-xl hover:opacity-90 transition transform hover:scale-[0.99]">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-3xl">
+              <img src="assets/logo.svg" class="w-14" alt="">
+            </span>
+            <span class="text-2xl font-bold">Roam</span>
+          </div>
+          <p class="text-gray-400">Making towing simple, fast, and affordable for everyone.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">Product</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#features" class="hover:text-[#A17E3E] transition">Features</a></li>
+            <li><a href="#pricing" class="hover:text-[#A17E3E] transition">Pricing</a></li>
+            <li><a href="#" class="hover:text-[#A17E3E] transition">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">Company</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-[#A17E3E] transition">About Us</a></li>
+            <li><a href="#" class="hover:text-[#A17E3E] transition">Careers</a></li>
+            <li><a href="#" class="hover:text-[#A17E3E] transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg mb-4">Legal</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-[#A17E3E] transition">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-[#A17E3E] transition">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-[#A17E3E] transition">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 Roam App. All rights reserved.</p>
+        <p class="mt-2">support@roamapp.com | +1 (555) 123-4567</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let isMenuOpen = false;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.innerHTML = isMenuOpen
+        ? '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'
+        : '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        isMenuOpen = false;
+        mobileMenuBtn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+      });
+    });
+
+    // Header scroll effect with throttling
+    let lastScrollPosition = window.scrollY;
+    let ticking = false;
+
+    function updateHeader() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('glass-effect', 'shadow-lg');
+      } else {
+        header.classList.remove('glass-effect', 'shadow-lg');
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      lastScrollPosition = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateHeader();
         });
+        ticking = true;
+      }
+    });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    // Enhanced smooth scrolling with offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerOffset = 100;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Reveal animations on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-fadeInUp').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 </body>
+
 </html>
