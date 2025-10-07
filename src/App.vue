@@ -16,7 +16,7 @@
         </div>
         <ul class="hidden md:flex space-x-8">
           <li v-for="item in navigation" :key="item.id">
-            <a :href="item.href" class="hover:text-white transition font-medium text-teal-400">
+            <a :href="item.href" class="hover:text-teal-300 transition font-medium text-teal-400">
               {{ item.label }}
             </a>
           </li>
