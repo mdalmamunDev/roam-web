@@ -289,17 +289,10 @@
         </div>
         <div>
           <form @submit.prevent="handleSubmit" class="bg-white rounded-2xl p-8 shadow-xl">
-            <div class="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                <input v-model="contactForm.firstName" type="text"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                <input v-model="contactForm.lastName" type="text"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
-              </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+              <input v-model="contactForm.name" type="text"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
             </div>
             <div class="mb-6">
               <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
@@ -364,8 +357,7 @@ export default {
 
       // Contact Form
       contactForm: {
-        firstName: '',
-        lastName: '',
+        name: '',
         email: '',
         message: ''
       },
@@ -674,16 +666,9 @@ export default {
     closeMobileMenu() {
       this.isMobileMenuOpen = false;
     },
-    handleSubmit() {
-      console.log('Form submitted:', this.contactForm);
+    async handleSubmit() {
+      await axios.post(import.meta.env.VITE_SERVER_URL + '/contact', this.contactForm);
       alert('Thank you for your message! We\'ll get back to you soon.');
-      // Reset form
-      this.contactForm = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        message: ''
-      };
     }
   },
   async mounted() {
