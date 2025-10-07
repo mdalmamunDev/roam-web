@@ -353,11 +353,14 @@
 
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
       isMobileMenuOpen: false,
       currentYear: new Date().getFullYear(),
+      support: {},
 
       // Contact Form
       contactForm: {
@@ -662,74 +665,6 @@ export default {
           { id: 3, icon: '💯', text: '100% Free' }
         ]
       },
-
-      // Contact
-      contact: {
-        title: {
-          before: 'Let\'s Get in',
-          highlight: 'Touch'
-        },
-        subtitle: 'Have questions or feedback? We\'d love to hear from you. Our team is here to help.',
-        info: [
-          {
-            id: 1,
-            icon: '📍',
-            title: 'Office Location',
-            value: '123 Innovation Drive, Silicon Valley, CA 94025'
-          },
-          {
-            id: 2,
-            icon: '📞',
-            title: 'Phone Number',
-            value: '+1 (555) 123-4567'
-          },
-          {
-            id: 3,
-            icon: '✉️',
-            title: 'Email Address',
-            value: 'support@roamapp.com'
-          }
-        ]
-      },
-
-      // Footer
-      footer: {
-        logo: 'assets/logo.svg',
-        brandName: 'Roam',
-        tagline: 'Making towing simple, fast, and affordable for everyone.',
-        copyright: 'Roam App. All rights reserved.',
-        contactEmail: 'support@roamapp.com',
-        contactPhone: '+1 (555) 123-4567',
-        columns: [
-          {
-            id: 1,
-            title: 'Product',
-            links: [
-              { id: 1, text: 'Features', href: '#features' },
-              { id: 2, text: 'Pricing', href: '#pricing' },
-              { id: 3, text: 'FAQ', href: '#' }
-            ]
-          },
-          {
-            id: 2,
-            title: 'Company',
-            links: [
-              { id: 1, text: 'About Us', href: '#' },
-              { id: 2, text: 'Careers', href: '#' },
-              { id: 3, text: 'Contact', href: '#' }
-            ]
-          },
-          {
-            id: 3,
-            title: 'Legal',
-            links: [
-              { id: 1, text: 'Privacy Policy', href: '#' },
-              { id: 2, text: 'Terms of Service', href: '#' },
-              { id: 3, text: 'Cookie Policy', href: '#' }
-            ]
-          }
-        ]
-      }
     };
   },
   methods: {
@@ -751,7 +686,11 @@ export default {
       };
     }
   },
-  mounted() {
+  async mounted() {
+    // set dynamic data
+    const res = await axios.get(import.meta.env.VITE_SERVER_URL + '/setting/support');
+    this.support = res?.data?.data?.value;
+
     // Header scroll effect
     let ticking = false;
     const header = document.getElementById('header');
@@ -812,6 +751,76 @@ export default {
     document.querySelectorAll('.animate-fadeInUp').forEach(el => {
       observer.observe(el);
     });
-  }
+  },
+  computed: {
+    footer() {
+      return {
+        logo: 'assets/logo.svg',
+        brandName: 'Roam',
+        tagline: 'Making towing simple, fast, and affordable for everyone.',
+        copyright: 'Roam App. All rights reserved.',
+        contactEmail: this.support?.email || 'N/A',
+        contactPhone: this.support?.phone || 'N/A',
+        columns: [
+          {
+            id: 1,
+            title: 'Product',
+            links: [
+              { id: 1, text: 'Features', href: '#features' },
+              { id: 2, text: 'Pricing', href: '#pricing' },
+              { id: 3, text: 'FAQ', href: '#' }
+            ]
+          },
+          {
+            id: 2,
+            title: 'Company',
+            links: [
+              { id: 1, text: 'About Us', href: '#' },
+              { id: 2, text: 'Careers', href: '#' },
+              { id: 3, text: 'Contact', href: '#' }
+            ]
+          },
+          {
+            id: 3,
+            title: 'Legal',
+            links: [
+              { id: 1, text: 'Privacy Policy', href: '#' },
+              { id: 2, text: 'Terms of Service', href: '#' },
+              { id: 3, text: 'Cookie Policy', href: '#' }
+            ]
+          }
+        ]
+      }
+    },
+    contact() {
+      return {
+        title: {
+          before: 'Let\'s Get in',
+          highlight: 'Touch'
+        },
+        subtitle: 'Have questions or feedback? We\'d love to hear from you. Our team is here to help.',
+        info: [
+          {
+            id: 1,
+            icon: '📍',
+            title: 'Office Location',
+            value: this.support?.officeAddress || 'N/A'
+          },
+          {
+            id: 2,
+            icon: '📞',
+            title: 'Phone Number',
+            value: this.support?.phone || 'N/A'
+          },
+          {
+            id: 3,
+            icon: '✉️',
+            title: 'Email Address',
+            value: this.support?.email || 'N/A'
+          }
+        ]
+      }
+    },
+  },
 };
 </script>
