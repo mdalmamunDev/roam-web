@@ -11,7 +11,7 @@ export default defineConfig({
     vueDevTools(),
   ],
   server: {
-    allowedHosts: ['roamappltd.com', 'www.roamappltd.com/']
+    allowedHosts: ['roamappltd.com', 'www.roamappltd.com']
   },
   resolve: {
     alias: {
