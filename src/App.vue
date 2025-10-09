@@ -760,18 +760,18 @@ export default {
             id: 2,
             title: 'Company',
             links: [
-              { id: 1, text: 'About Us', href: '#' },
-              { id: 2, text: 'Careers', href: '#' },
-              { id: 3, text: 'Contact', href: '#' }
+              { id: 1, text: 'About Us', href: import.meta.env.VITE_ABOUT_US_URL },
+              { id: 2, text: 'Careers', href: import.meta.env.VITE_ABOUT_US_URL },
+              { id: 3, text: 'Contact', href: import.meta.env.VITE_ABOUT_US_URL }
             ]
           },
           {
             id: 3,
             title: 'Legal',
             links: [
-              { id: 1, text: 'Privacy Policy', href: '#' },
-              { id: 2, text: 'Terms of Service', href: '#' },
-              { id: 3, text: 'Cookie Policy', href: '#' }
+              { id: 1, text: 'Privacy Policy', href: import.meta.env.VITE_PRIVACY_POLICY_URL },
+              { id: 2, text: 'Terms of Service', href: import.meta.env.VITE_TERMS_AND_CONDITIONS_URL },
+              { id: 3, text: 'Cookie Policy', href: import.meta.env.VITE_PRIVACY_POLICY_URL }
             ]
           }
         ]
